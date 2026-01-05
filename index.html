@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Student Planner 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1>[ STUDENT_PLANNER_v1.0 ]</h1>
+      <p>Welcome back. It is currently: <span id="time"></span></p>
+      <div class="theme-controls">
+        <span>THEME_SELECT: </span>
+        <button onclick="setTheme('nord')">Rosy Rice</button>
+        <button onclick="setTheme('peach')">Creamy Peach</button>
+        <button onclick="setTheme('matrix')">Classic Terminal</button>
+      </div>
+      <div class="custom-theme-box">
+        <span>CUSTOM_COLORS: </span>
+        <label for="colorBg">bg: </label>
+        <input type="color" id="colorBg" title="Background Color">
+        <label for="colorText">text: </label>
+        <input type="color" id="colorText" title="Text Color">
+        <button onclick="saveCustomTheme()">APPLY & SAVE</button>
+        <button onclick="panicReset()" style="color: red; border-color: red;">RESET_THEME</button>
+      </div>
+      <p>Tip: Disable extensions such as Dark Reader, otherwise it would mess with the themes.</p>
+      <div class="data-controls" style="margin-top: 20px;">
+        <button onclick="exportData()">DOWNLOAD_BACKUP (.json)</button>
+        <button onclick="document.getElementById('importFile').click()">UPLOAD_BACKUP</button>
+        <input type="file" id="importFile" style="display:none" onchange="importData(event)">
+      </div>
+    </header>
+
+    <nav>
+      <button id="btn-dashboard" class="nav-btn" onclick="showSection('dashboard')">Dashboard</button>
+      <button id="btn-calendar" class="nav-btn" onclick="showSection('calendar')">Semester Calendar</button>
+    </nav>
+
+    <div id="dashboard" class="section">
+
+      <div class="sub-section">
+        <h3>// TODAY'S_TASKS</h3>
+        <ul id="taskList"></ul>
+        <input type="text" id="taskInput" placeholder="Enter new task...">
+        <button onclick="addTask()">ADD_TASK</button>
+      </div>
+
+      <div class="sub-section">
+        <h3>// SUBJECT_STATS</h3>
+        <p>Physics: 85% | Electronics: 92%</p>
+      </div>
+
+    </div>
+
+    <div id="calendar" class="section" style="display:none;">
+
+      <h3>// SEMESTER_VIEW</h3>
+
+      <button onclick="openCreateForm()" style="margin-bottom: 10px;">[+] ADD_NEW_ENTRY</button>
+
+      <div class="calendar-days-header">
+        <div>MON</div>
+        <div>TUE</div>
+        <div>WED</div>
+        <div>THU</div>
+        <div>FRI</div>
+        <div>SAT</div>
+        <div>SUN</div>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+
+      <div id="exam-details" class="section-container">
+        <h4>[ EXAM_DETAILS ]</h4>
+        <p id="detail-content">Select an exam on the calendar to see notes...</p>
+        <button onclick="openUpdateForm()">EDIT_ENTRY</button>
+        <button onclick="deleteExam()">DELETE_ENTRY</button>
+      </div>
+
+      <div id="exam-form-container" class="expandable-form">
+        <h4>[ EXAM_EDITOR ]</h4>
+        <input type="text" id="moduleCode" placeholder="Module Code (e.g. ELEC 22534)">
+        <input type="date" id="examDate">
+
+        <label>Time:</label>
+        <select id="examTime">
+          <option value="09:00 AM">09:00 AM</option>
+          <option value="01:00 PM">01:00 PM</option>
+        </select>
+
+        <textarea id="examNotes" placeholder="Optional notes (e.g. Bring Calculator)"></textarea>
+
+        <button id="save-btn" onclick="addExam()">SAVE_CHANGES</button>
+        <button onclick="closeForm()">CANCEL</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

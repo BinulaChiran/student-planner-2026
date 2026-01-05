@@ -1,0 +1,198 @@
+:root {
+  --bg: #2E3440;
+  --text: #ECEFF4;
+  --border: #4C566A;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  background: none;
+  border: 1px solid var(--text);
+  color: var(--text);
+  padding: 8px;
+}
+
+.container {
+  border: 2px solid var(--text);
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 5px 5px 0px var(--text);
+}
+
+header {
+  border-bottom: 2px solid var(--text);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.custom-theme-box {
+  margin-top: 10px;
+  border: 1px dashed var(--text);
+  padding: 10px;
+}
+
+/* Also, let's style the color picker boxes to look cleaner */
+input[type="color"] {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--text);
+  cursor: pointer;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  border: 1px solid transparent;
+}
+
+.nav-btn.active {
+  text-decoration: underline;
+  border: 1px solid var(--text);
+  font-weight: bold;
+}
+
+/* Sections */
+.section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  margin-bottom: 20px;
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Ensure [X] buttons are clearly visible and styled */
+.task-item button {
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  border: 1px solid var(--text);
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+/* The Expanding Form */
+.expandable-form {
+  display: none;
+  /* Controlled by JS */
+  flex-direction: column;
+  gap: 15px;
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid var(--text);
+  padding: 0px;
+  /* Animate this too */
+  margin-top: 20px;
+}
+
+.expandable-form.open {
+  display: flex;
+  opacity: 1;
+  max-height: 800px;
+  padding: 20px;
+}
+
+/* Force the date picker icon to follow text color */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(var(--icon-invert, 0));
+  /* Logic added to setTheme in JS */
+  cursor: pointer;
+}
+
+/* Enhanced contrast for dropdowns across all OS/Browsers */
+select option {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#exam-details {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  margin-top: 20px;
+  border-top: 2px dashed var(--text);
+  padding-top: 10px;
+}
+
+#exam-details.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* Calendar Styling */
+
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  border: 1px solid var(--text);
+  background-color: var(--text);
+}
+
+.calendar-day {
+  background: var(--bg);
+  aspect-ratio: 1 / 1;
+  padding: 5px;
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.event-marker {
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.7rem;
+  margin-top: 2px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+button {
+  background: var(--text);
+  color: var(--bg);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+
+ul {
+  list-style: " > ";
+}
